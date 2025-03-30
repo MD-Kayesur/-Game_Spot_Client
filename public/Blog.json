@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "image": "https://i.ibb.co.com/LDDmZ3HR/banner5.jpg",
+    "image2": "https://i.ibb.co.com/wNmFHFp6/banner1.jpg",
+    "title": "Curabitur sagittis odio quis erat",
+    "description": "A masterful blend of action, storytelling, and breathtaking visuals, God of War reimagines Kratos' journey in Norse mythology. The father-son dynamic between Kratos and Atreus adds emotional depth to the experience. Every battle is intense, every landscape is mesmerizing, making this one of the most unforgettable gaming experiences.",
+    "date": "Thursday, 19 December 2013, 03:08 AM"
+  },
+  {
+    "id": 2,
+    "image": "https://i.ibb.co.com/mrdMRS9V/banner4.jpg",
+    "image2": "https://i.ibb.co.com/2Yc8bvG6/banner2.jpg",
+    "title": "Lorem Ipsum Dolor Sit Amet",
+    "description": "Despite a rocky launch, Cyberpunk 2077 has evolved into a stunning open-world RPG with deep storytelling and immersive world-building. Night City feels alive, packed with countless activities, futuristic aesthetics, and engaging character arcs. With continued updates, the game now offers a truly remarkable cyberpunk experience.",
+    "date": "Monday, 15 March 2021, 10:30 AM"
+  },
+  {
+    "id": 3,
+    "image": "https://i.ibb.co.com/ksjr43Jw/banner3.jpg",
+    "image2": "https://i.ibb.co.com/LDDmZ3HR/banner5.jpg",
+
+    "title": "Aenean Consectetur Ligula",
+    "description": "A masterful blend of action, storytelling, and breathtaking visuals, God of War reimagines Kratos' journey in Norse mythology. The father-son dynamic between Kratos and Atreus adds emotional depth to the experience. Every battle is intense, every landscape is mesmerizing, making this one of the most unforgettable gaming experiences.",
+    "date": "Saturday, 07 August 2020, 02:45 PM"
+  },
+  {
+    "id": 4,
+    "image": "https://i.ibb.co.com/2Yc8bvG6/banner2.jpg",
+    "image2": "https://i.ibb.co.com/LDDmZ3HR/banner5.jpg",
+
+    "title": "Donec Eget Nisl Velit",
+    "description": "Breath of the Wild redefines open-world gaming with its immersive landscapes, dynamic weather, and freedom to explore. The game encourages creativity in problem-solving and offers a rich storyline set in the vast kingdom of Hyrule. From climbing mountains to cooking meals, every small detail is crafted with care, making it a truly revolutionary experience.",
+    "date": "Wednesday, 22 June 2022, 09:15 AM"
+  },
+  {
+    "id": 5,
+    "image": "https://i.ibb.co.com/wNmFHFp6/banner1.jpg",
+    "image2": "https://i.ibb.co.com/mrdMRS9V/banner4.jpg",
+    "title": "Fusce Nec Tristique Est",
+    "description": "Rockstar's masterpiece delivers an unparalleled Wild West experience. With its stunning visuals, complex characters, and deeply emotional storyline, RDR2 is more than just a game; it’s an interactive cinematic experience. Every choice you make impacts the world around you, creating an incredibly immersive and realistic adventure.",
+    "date": "Sunday, 30 October 2019, 07:20 PM"
+  },
+  {
+    "id": 6,
+    "image": "https://i.ibb.co.com/wNmFHFp6/banner1.jpg",
+    "image2": "https://i.ibb.co.com/LDDmZ3HR/banner5.jpg",
+    "title": "Mauris Euismod Metus",
+    "description": "Breath of the Wild redefines open-world gaming with its immersive landscapes, dynamic weather, and freedom to explore. The game encourages creativity in problem-solving and offers a rich storyline set in the vast kingdom of Hyrule. From climbing mountains to cooking meals, every small detail is crafted with care, making it a truly revolutionary experience.",
+    "date": "Tuesday, 11 January 2022, 04:55 AM"
+  }
+]

@@ -26,9 +26,27 @@ const Navbar = () => {
      
   const navlink = (
     <>
-      <div className="  font-semibold md:flex text-black md:text-white items-center">
+      <div className="   font-semibold md:flex text-black md:text-white items-center">
         <li>
           <NavLink to="/">Home</NavLink>
+        </li>
+        {/* <li>
+          <NavLink to="/blog">Blog</NavLink>
+        </li> */}
+        <li>
+          <NavLink to="/allreviews">All Reviews</NavLink>
+        </li>
+        {/* <li>
+          <NavLink to="/otherallre">Other All Review</NavLink>
+        </li> */}
+        <li>
+          <NavLink to="/addreview">Add Review </NavLink>
+        </li>
+        <li>
+          <NavLink to="/myreview">My Reviews</NavLink>
+        </li>
+        <li>
+          <NavLink to="/gamewatchlist">Game WatchList</NavLink>
         </li>
        
          
@@ -71,27 +89,27 @@ const Navbar = () => {
           </ul>
         </div>
         <div     className={`flex  gap-2 items-center  `}>
-          <img className="h-15 rounded-4xl w-15" src={'img1'} alt="" />
+          <img className="h-15 rounded-4xl w-15" src='https://i.ibb.co.com/RpVXVH6w/logo.png' alt="" />
           <a className="font-semibold nd:text-xl">Game_Spot</a>
         </div>
       </div>
 
-      <div className=" navlink navbar-end">
+      <div className=" navbar navbar-end ">
         <div className="  hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{navlink}</ul>
         </div>
 
         {
-            user? <div className="dropdown dropdown-end">
+            user? <div className="dropdown dropdown-end  ">
             <div
               tabIndex={0}
               role="button"
               className="btn btn-ghost btn-circle avatar">
                 
-              <div className="w-10 rounded-full">
+              <div className="w-10  rounded-full">
                 
                 <img
-                  alt="Tailwind CSS Navbar component"
+                  alt="    "
                   src= {user?.displayName}
                 />
            

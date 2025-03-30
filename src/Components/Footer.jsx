@@ -60,7 +60,7 @@ const Footer = () => {
 <footer className="footer   border-base-300 border-t px-10 py-4 bg-gradient-to-r from-orange-500 to-purple-500 text-white">
 <aside    className={`grid-flow-col  items-center  `}>
      
-  <p className="text-3xl">© {currentYear} <span className="text-black font-bold px-3">Car_Swift.</span>  All Rights Reserved.</p> 
+  <p className="text-3xl">© {currentYear} <span className="text-black font-bold px-3">Game_Spot</span>  All Rights Reserved.</p> 
   </aside>
   <nav className="md:place-self-center md:justify-self-end">
     <div className="grid grid-flow-col gap-4">

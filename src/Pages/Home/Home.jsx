@@ -1,9 +1,16 @@
+import Allreview from "../AllReview/Allreview";
+import Banner from "./Banner";
+import BlogHome from "./Blog/BlogHome";
+import HighestReciew from "./HighestReciew";
+
  
 
 const Home = () => {
     return (
         <div>
-            <h1>this is home p[age</h1>
+           <Banner></Banner>
+           <BlogHome></BlogHome>
+          <HighestReciew></HighestReciew>
         </div>
     );
 };
