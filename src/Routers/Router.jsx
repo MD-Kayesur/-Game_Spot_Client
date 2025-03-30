@@ -36,29 +36,29 @@ export const router = createBrowserRouter([
             path:'/allreviews',
             element: <Allreview></Allreview>
         },
-        {
-            path:'/otherallre',
-            element: <OtherAllRe></OtherAllRe>
-        },
+        // {
+        //     path:'/otherallre',
+        //     element: <OtherAllRe></OtherAllRe>
+        // },
         {
             path:'/reviewsdetails/:id',
-            element: <ReviewDetails></ReviewDetails>
+            element: <PrivateRoute><ReviewDetails></ReviewDetails></PrivateRoute>
         },
         {
             path:'/myreview',
-            element: <MyReview></MyReview>
+            element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
         },
         {
             path:'/updatereview/:id',
-            element: <UpadateReciew></UpadateReciew>
+            element: <PrivateRoute><UpadateReciew></UpadateReciew></PrivateRoute>
         },
         {
             path:'/addreview',
-            element: <AddReview></AddReview>
+            element:<PrivateRoute> <AddReview></AddReview></PrivateRoute>
         },
         {
             path:'/gamewatchlist',
-            element: <GameWatchList></GameWatchList>
+            element: <PrivateRoute><GameWatchList></GameWatchList></PrivateRoute>
         },
         {
             path:'/login',
