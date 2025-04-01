@@ -9,7 +9,7 @@ const ReviewDetails = () => {
   const { refetch, data: ReviewDetails = [] } = useQuery({
     queryKey: ["ReviewDetails"],
     queryFn: async () => {
-      const result = await AxiousURL.get("/MyReviews");
+      const result = await AxiousURL.get("/AllReviews");
       return refetch, result.data;
     },
   });

@@ -42,23 +42,23 @@ export const router = createBrowserRouter([
         // },
         {
             path:'/reviewsdetails/:id',
-            element: <PrivateRoute><ReviewDetails></ReviewDetails></PrivateRoute>
+            element: < ><ReviewDetails></ReviewDetails></ >
         },
         {
             path:'/myreview',
-            element: <PrivateRoute><MyReview></MyReview></PrivateRoute>
+            element: < ><MyReview></MyReview></ >
         },
         {
             path:'/updatereview/:id',
-            element: <PrivateRoute><UpadateReciew></UpadateReciew></PrivateRoute>
+            element: < ><UpadateReciew></UpadateReciew></ >
         },
         {
             path:'/addreview',
-            element:<PrivateRoute> <AddReview></AddReview></PrivateRoute>
+            element:< > <AddReview></AddReview></ >
         },
         {
             path:'/gamewatchlist',
-            element: <PrivateRoute><GameWatchList></GameWatchList></PrivateRoute>
+            element: < ><GameWatchList></GameWatchList></ >
         },
         {
             path:'/login',

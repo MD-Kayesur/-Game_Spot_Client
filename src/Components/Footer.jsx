@@ -7,7 +7,7 @@ const Footer = () => {
     const currentYear = new Date().getFullYear();
     return (
         <div>
-            <footer className="footer sm:footer-horizontal     p-10   bg-gradient-to-r from-orange-500 to-purple-500 text-white">
+            <footer className="footer sm:footer-horizontal  bg-blue-600   p-10     text-white">
  
             <aside 
             // ref={ref} 
@@ -57,7 +57,7 @@ const Footer = () => {
     <a className="link link-hover">Cookie policy</a>
   </nav>
 </footer>
-<footer className="footer   border-base-300 border-t px-10 py-4 bg-gradient-to-r from-orange-500 to-purple-500 text-white">
+<footer className="footer   border-base-300 border-t px-10 py-4 bg-blue-600  text-white">
 <aside    className={`grid-flow-col  items-center  `}>
      
   <p className="text-3xl">© {currentYear} <span className="text-black font-bold px-3">Game_Spot</span>  All Rights Reserved.</p> 

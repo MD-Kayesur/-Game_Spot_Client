@@ -1,31 +1,40 @@
-import { useQuery } from "@tanstack/react-query";
-import useAxious from "../../Hooks/useAxious";
+ import useAxious from "../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
-import axios from "axios";
-import { use, useContext, useState } from "react";
+// import axios from "axios";
+import { useContext, useState,    } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import { useQuery } from "@tanstack/react-query";
 // import useMovementHook from "../../Hooks/useMovementHook";
 
 const MyReview = () => {
   const AxiousURL = useAxious();
-//   const [myreview,setMyreview]=useState([])
-  const {user}=useContext(AuthContext)
-  const { refetch, data: MyReviews = [] } = useQuery({
-    queryKey: ["MyReviews"],
+  const {user} = useContext(AuthContext)
+    
+  const {loding}=useContext(AuthContext)
+  
+  // console.log(user?.uid)
+  // const useUid = user?.uid
+  const { refetch, data: MyReview = [] } = useQuery({
+    queryKey: ["MyReview"],
     queryFn: async () => {
-      const result = await AxiousURL.get("/MyReviews");
+      const result = await AxiousURL.get("/AllReviews");
       return refetch, result.data;
     },
   });
 
 
- /* 
+  if(loding){
+    return <h2>lodrfgdfgfj.........</h2>
+  }
+console.log(MyReview)
 
- */
-const datas = MyReviews.filter(data=> data?.userEmail===user?.email)
-// setMyreview(datas)
- console.log(typeof(datas))
+ /*     
+
+//  */
+
+const datas = MyReview.filter(data=> data?.userEmail===user?.email)
+ 
  
 
 
@@ -57,17 +66,17 @@ const datas = MyReviews.filter(data=> data?.userEmail===user?.email)
 
   // Pagination
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 6;
+  // const [currentPage, setCurrentPage] = useState(1) ;
+  // const itemsPerPage = 6;
 
-  const startIndex = (currentPage - 1) * itemsPerPage;
-  const endIndex = startIndex + itemsPerPage;
-  const totalPages = Math.ceil(MyReviews.length / itemsPerPage);
-  const MyAllReviews = MyReviews.slice(startIndex, endIndex);
+  // const startIndex = (currentPage - 1) * itemsPerPage;
+  // const endIndex = startIndex + itemsPerPage;
+  // const totalPages = Math.ceil(MyReviews.length / itemsPerPage);
+  // const MyAllReviews = MyReviews.slice(startIndex, endIndex);
 
-  console.log(MyAllReviews);
+  // console.log(MyAllReviews);
 
-  //   const [ref, isVisible] = useMovementHook();
+    // const [ref, isVisible] = useMovementHook();
   return (
     <div>
       <div
@@ -88,6 +97,9 @@ const datas = MyReviews.filter(data=> data?.userEmail===user?.email)
                 </h2>
                 <p className="text-sm text-gray-500">
                   {MyReview?.reviewDescription}
+                </p>
+                <p className="text-sm text-gray-500">
+                  {MyReview?.userEmail}
                 </p>
                 <div className="flex justify-between items-center mt-2">
                   <span className="badge badge-primary">{MyReview?.genre}</span>
@@ -142,7 +154,7 @@ const datas = MyReviews.filter(data=> data?.userEmail===user?.email)
       </div>
 
       {/* pagination */}
-      <div className="flex justify-center mt-5">
+      {/* <div className="flex justify-center mt-5">
         <button
           onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
           disabled={currentPage === 1}
@@ -169,8 +181,10 @@ const datas = MyReviews.filter(data=> data?.userEmail===user?.email)
           className="btn btn-outline ml-2">
           Next
         </button>
-      </div>
+      </div> */}
     </div>
+
+    
   );
 };
 

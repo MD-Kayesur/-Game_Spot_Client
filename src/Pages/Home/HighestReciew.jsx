@@ -14,6 +14,8 @@ const HighestReciew = () => {
           return refetch, result.data;
         },
       });
+
+      console.log(HighestReciew)
     return (
 
         <>

@@ -1,13 +1,30 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
+// updateReviewsimport React from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxious from "../../Hooks/useAxious";
+import { useQuery } from "@tanstack/react-query";
+import { useState } from "react";
+ 
 // import useMovementHook from '../../Hooks/useMovementHook';
 
 const UpadateReciew = () => {
   const Navigate = useNavigate();
   const AxiousURL = useAxious();
+const params = useParams()
+console.log(params)
 
+ 
+const { refetch, data: updateReviews = [] } = useQuery({
+  queryKey: ["updateReviews"],
+  queryFn: async () => {
+    const result = await AxiousURL.get("/AllReviews");
+    return refetch, result.data;
+  },
+});
+// console.log(updateReviews)
+ 
+ 
+//  console.log(id)
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -20,7 +37,7 @@ const UpadateReciew = () => {
     const userEmail = form.userEmail.value;
     const userName = form.userName.value;
 
-    console.log(typeof rating);
+    // console.log(typeof rating);
     const info = {
       gameTitle,
       reviewDescription,
@@ -32,7 +49,7 @@ const UpadateReciew = () => {
       genre,
     };
     console.log(info);
-    AxiousURL.patch("/MyReviews", info).then((res) => {
+    AxiousURL.put(`/MyReviews`, info).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({
@@ -46,9 +63,17 @@ const UpadateReciew = () => {
     });
   };
 
+
+
+
   // const [ref, isVisible] = useMovementHook();
   return (
     <div>
+{
+ 
+}
+
+
       <div className={`bg-base-200  my-6  `}>
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">

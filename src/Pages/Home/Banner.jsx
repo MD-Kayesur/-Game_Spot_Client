@@ -15,18 +15,32 @@ import 'swiper/css/navigation';
 
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import { data } from 'react-router-dom';
+import useAxious from '../../Hooks/useAxious';
+import { useQuery } from '@tanstack/react-query';
 
 const Banner = () => {
 
-const [bannerr,setbanner]=useState([])
+// const [bannerr,setbanner]=useState([])
 
-useEffect(()=>{
-    fetch('../../../public/banner.json')
-    .then(res=>res.json())
-    .then(data=>{
-        setbanner(data)
-    })
-},[])
+
+ const AxiousURL = useAxious();
+  const { refetch, data: Banner = [] } = useQuery({
+    queryKey: ["Banner"],
+    queryFn: async () => {
+      const result = await AxiousURL.get("/Banners");
+      return refetch, result.data;
+    },
+  });
+
+console.log(Banner)
+
+// useEffect(()=>{
+//     fetch('../../../public/banner.json')
+//     .then(res=>res.json())
+//     .then(data=>{
+//         setbanner(data)
+//     })
+// },[])
 
   return (
     <Swiper
@@ -45,7 +59,7 @@ useEffect(()=>{
     >
       {/* Image slides */}
  
-{ bannerr.map((banner, index) => (
+{ Banner.map((banner, index) => (
         <SwiperSlide key={index}>
          <div
   className="hero min-h-screen"

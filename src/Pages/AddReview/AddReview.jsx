@@ -42,7 +42,7 @@ const userEmail = user?.email
           icon: "success",
           draggable: true,
         });
-        Navigate('/allreviews')
+        Navigate('/myreview')
         return "";
       }
     });

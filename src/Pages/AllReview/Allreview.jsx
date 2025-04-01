@@ -38,8 +38,7 @@ const Allreview = () => {
   //   const [ref, isVisible] = useMovementHook();
   return (
     <div>
-      <div
-        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6  `}>
+      <div  className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6  `}>
         {MyAllReviews?.map((MyReview) => (
           <div className="card   bg-base-100 shadow-xl p-4">
             <figure>
