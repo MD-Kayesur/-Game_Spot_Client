@@ -1,14 +1,19 @@
- import useAxious from "../../Hooks/useAxious";
+//  import useAxious from "../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 // import axios from "axios";
 import { useContext, useState,    } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useMyReview from "./Hooks/useMyReview";
 import { useQuery } from "@tanstack/react-query";
+import useAxious from "../../Hooks/useAxious";
+ 
 // import useMovementHook from "../../Hooks/useMovementHook";
 
 const MyReview = () => {
-  const AxiousURL = useAxious();
+ const {myReviews} = useMyReview()
+const AxiousURL = useAxious()
+ console.log(myReviews)
   const {user} = useContext(AuthContext)
     
   const {loding}=useContext(AuthContext)
@@ -23,9 +28,11 @@ const MyReview = () => {
     },
   });
 
+ 
+console.log(MyReview)
 
   if(loding){
-    return <h2>lodrfgdfgfj.........</h2>
+    return <h2 className="text-center  text-4xl">loding.........</h2>
   }
 console.log(MyReview)
 
@@ -36,7 +43,7 @@ console.log(MyReview)
 const datas = MyReview.filter(data=> data?.userEmail===user?.email)
  
  
-
+ 
 
   const HandleDElate = (id) => {
     Swal.fire({
@@ -71,8 +78,8 @@ const datas = MyReview.filter(data=> data?.userEmail===user?.email)
 
   // const startIndex = (currentPage - 1) * itemsPerPage;
   // const endIndex = startIndex + itemsPerPage;
-  // const totalPages = Math.ceil(MyReviews.length / itemsPerPage);
-  // const MyAllReviews = MyReviews.slice(startIndex, endIndex);
+  // const totalPages = Math.ceil(datas.length / itemsPerPage);
+  // const MyAllReviews = datas.slice(startIndex, endIndex);
 
   // console.log(MyAllReviews);
 

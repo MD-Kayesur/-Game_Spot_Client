@@ -3,16 +3,20 @@ import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxious from "../../Hooks/useAxious";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useGame from "./Hooks/useGame";
  
 // import useMovementHook from '../../Hooks/useMovementHook';
 
 const UpadateReciew = () => {
+  const {coupon,updateCReview} = useGame()
+  console.log(coupon)
   const Navigate = useNavigate();
   const AxiousURL = useAxious();
-const params = useParams()
-console.log(params)
-
+const {id} = useParams()
+ console.log(id)
+//  const {loding} = useContext(AuthContext)
  
 const { refetch, data: updateReviews = [] } = useQuery({
   queryKey: ["updateReviews"],
@@ -21,8 +25,19 @@ const { refetch, data: updateReviews = [] } = useQuery({
     return refetch, result.data;
   },
 });
+
+
+
 // console.log(updateReviews)
- 
+//  const finddata = coupon.find(Singledata => Singledata?._id === id)
+ const finddata = updateReviews.find(Singledata => Singledata?._id === id)
+console.log(finddata)
+
+//  if (loding) {
+//   return <h2>loding</h2>
+//  }
+// const {reviewDescription,rating,genre,gameTitle,gameTitle,gameCoverImage} = finddata
+
  
 //  console.log(id)
   const handleSubmit = (e) => {
@@ -34,8 +49,8 @@ const { refetch, data: updateReviews = [] } = useQuery({
     const publishingYear = form.publishingYear.value;
     const gameCoverImage = form.gameCoverImage.value;
     const genre = form.genre.value;
-    const userEmail = form.userEmail.value;
-    const userName = form.userName.value;
+    // const userEmail = form.userEmail.value;
+    // const userName = form.userName.value;
 
     // console.log(typeof rating);
     const info = {
@@ -44,23 +59,27 @@ const { refetch, data: updateReviews = [] } = useQuery({
       rating,
       publishingYear,
       gameCoverImage,
-      userEmail,
-      userName,
+      
       genre,
     };
     console.log(info);
-    AxiousURL.put(`/MyReviews`, info).then((res) => {
-      console.log(res.data);
-      if (res.data.insertedId) {
-        Swal.fire({
-          title: " successly added your indestry details!",
-          icon: "success",
-          draggable: true,
-        });
+
+    updateCReview(id,info)
+
+
+    // AxiousURL.put(`/updateInfo/${id}`,  info ,{ timeout: 10000 })
+    // .then((res) => {
+    //   console.log(res.data);
+    //   if (res.data.insertedId) {
+    //     Swal.fire({
+    //       title: " successly added your indestry details!",
+    //       icon: "success",
+    //       draggable: true,
+    //     });
     
-        return "";
-      }
-    });
+    //     return "";
+    //   }
+    // });
   };
 
 
@@ -93,7 +112,9 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     type="text"
                     name="gameTitle"
                     className="input"
-                    placeholder="GameTitle"
+                    defaultValue={finddata?.gameTitle}
+                    placeholder= 'GameTitle'
+                     
                   />
 
                   <label className="fieldset-label">GameCoverImage</label>
@@ -101,7 +122,8 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     type="url"
                     name="gameCoverImage"
                     className="input"
-                    placeholder="GameCoverImage"
+                    defaultValue={finddata?.gameCoverImage}
+                    placeholder='GameCoverImage '
                   />
 
                   <label className="fieldset-label"> ReviewDescription</label>
@@ -109,7 +131,8 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     type="text"
                     name="reviewDescription"
                     className="input"
-                    placeholder=" ReviewDescription"
+                    defaultValue={finddata?.reviewDescription}
+                    placeholder ='ReviewDescription'
                   />
                   <label className="fieldset-label"> Rating</label>
                   <input
@@ -118,7 +141,8 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     min="1"
                     max="10"
                     className="input"
-                    placeholder="Enter rating (1-10)"
+                    defaultValue={finddata?.rating}
+                    placeholder="Rating"
                   />
 
                   <label className="fieldset-label">publishingYear</label>
@@ -126,12 +150,13 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     type="date"
                     name="publishingYear"
                     className="input"
-                    placeholder="publishingYear"
+                    defaultValue={finddata?.publishingYear}
+                    placeholder= "publishingYear"
                   />
 
                   <label className="fieldset-label">Select a Option</label>
                   <select name="genre" className="select">
-                    <option value="">Select Genre</option>
+                    <option value=""> {finddata?.genre}</option>
                     <option value="Action">Action</option>
                     <option value="Adventure">Adventure</option>
                     <option value="RPG">RPG</option>
@@ -140,23 +165,11 @@ const { refetch, data: updateReviews = [] } = useQuery({
                     <option value="Horror">Horror</option>
                   </select>
 
-                  <label className="fieldset-label">userEmail </label>
-                  <input
-                    type="email"
-                    name="userEmail"
-                    className="input"
-                    placeholder="userEmail "
-                  />
+                   
 
-                  <label className="fieldset-label">userName</label>
-                  <input
-                    type="text"
-                    name="userName"
-                    className="input"
-                    placeholder="userName"
-                  />
+                   
 
-                  <button className="btn btn-neutral mt-4">
+                  <button  className="btn btn-neutral mt-4">
                     {" "}
                Update
                   </button>

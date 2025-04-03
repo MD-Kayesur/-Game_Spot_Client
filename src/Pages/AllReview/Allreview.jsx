@@ -6,9 +6,12 @@ import axios from "axios";
 import { use, useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import { FaF } from "react-icons/fa6";
+import useGame from "../MyReview/Hooks/useGame";
 // import useMovementHook from "../../Hooks/useMovementHook";
 
 const Allreview = () => {
+
+  const {loding} = useContext(AuthContext)
   const AxiousURL = useAxious();
   const { refetch, data: MyReviews = [] } = useQuery({
     queryKey: ["MyReviews"],
@@ -18,7 +21,7 @@ const Allreview = () => {
     },
   });
 
-
+// const allReviews=useGame()
 
 
 
@@ -33,7 +36,11 @@ const Allreview = () => {
   const totalPages = Math.ceil(MyReviews.length / itemsPerPage);
   const MyAllReviews = MyReviews.slice(startIndex, endIndex);
 
-  console.log(MyAllReviews);
+
+  if(loding){
+    return <h2 className="text-center  text-4xl">loding.........</h2>
+  }
+  // console.log(MyAllReviews);
 
   //   const [ref, isVisible] = useMovementHook();
   return (

@@ -2,8 +2,12 @@ import { useQuery } from "@tanstack/react-query";
 import useAxious from "../../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
 import { FaLeftLong } from "react-icons/fa6";
+import useBlogs from "../../MyReview/Hooks/useBlogs";
 
 const BlogHome = () => {
+
+const {BlogData} = useBlogs()
+
   const AxiousURL = useAxious();
   const { refetch, data: Blogs = [] } = useQuery({
     queryKey: ["Blogs"],
@@ -12,7 +16,7 @@ const BlogHome = () => {
       return refetch, result.data;
     },
   });
-  console.log(Blogs);
+  // console.log(Blogs);
   return (
 <>
 <div className="text-center py-10">
@@ -20,7 +24,7 @@ const BlogHome = () => {
 <h2>Quisque justo turpis, sodales sit amet consectetur --- <NavLink to='/blog' className='font-bold text-blue-500 hover:text-black'>GO TO BLOG</NavLink></h2>
 </div>
     <div className="grid md:grid-cols-4 gap-6 p-4">
-    {Blogs.slice(0, 4).map((blog) => (
+    {BlogData.slice(0, 4).map((blog) => (
       <div key={blog.id} className="bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="card bg-base-100 shadow-xl p-4">
           <figure>

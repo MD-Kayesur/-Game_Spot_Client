@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import useAxious from "../../Hooks/useAxious";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useGame from "../MyReview/Hooks/useGame";
 // import useMovementHook from '../../Hooks/useMovementHook';
 
 const AddReview = () => {
   const Navigate = useNavigate();
   const AxiousURL = useAxious();
-const {user}= useContext(AuthContext)
+ const {user}= useContext(AuthContext)
 const usermame = user?.displayName
 const userEmail = user?.email
   const handleSubmit = (e) => {
@@ -34,7 +35,14 @@ const userEmail = user?.email
       genre,
     };
     console.log(info);
-    AxiousURL.post("/MyReviews", info,).then((res) => {
+
+
+     
+
+
+
+
+    AxiousURL.post("/addReviews", info,).then((res) => {
       console.log(res.data);
       if (res.data.insertedId) {
         Swal.fire({

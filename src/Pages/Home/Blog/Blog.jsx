@@ -2,9 +2,13 @@ import { useQuery } from "@tanstack/react-query";
 import useAxious from "../../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
 import { FaLeftLong } from "react-icons/fa6";
+import useBlogs from "../../MyReview/Hooks/useBlogs";
 
 const Blog = () => {
   const AxiousURL = useAxious();
+
+const {BlogData}=useBlogs()
+
   const { refetch, data: Blogs = [] } = useQuery({
     queryKey: ["Blogs"],
     queryFn: async () => {
@@ -12,10 +16,10 @@ const Blog = () => {
       return refetch, result.data;
     },
   });
-  console.log(Blogs);
+  // console.log(Blogs);
   return (
     <div>
-      {Blogs.map((blog) => (
+      {BlogData.map((blog) => (
         <div className={`bg-base-200  my-6  `}>
           <div className="px-10">
             {" "}

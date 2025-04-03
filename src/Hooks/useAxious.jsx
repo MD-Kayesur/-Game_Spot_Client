@@ -2,7 +2,7 @@ import axios from "axios";
 
  
 export const AxiousURL = axios.create({
-   baseURL:'https://game-spot-server.vercel.app',
+   baseURL:'http://localhost:4001',
    timeout:5000
 })
 const useAxious = () => {

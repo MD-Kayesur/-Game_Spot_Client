@@ -1,10 +1,13 @@
 import { useParams } from "react-router-dom";
 import useAxious from "../../../Hooks/useAxious";
 import { useQuery } from "@tanstack/react-query";
+import useBlogs from "../../MyReview/Hooks/useBlogs";
 
 const BlockDetails = () => {
   const params = useParams();
   console.log(params);
+
+  const {BlogData} = useBlogs()
   const AxiousURL = useAxious();
   const { refetch, data: Blogs = [] } = useQuery({
     queryKey: ["Blogs"],
@@ -16,7 +19,7 @@ const BlockDetails = () => {
 
   return (
     <div>
-      {Blogs.map((blog) => blog.id==params.id? 
+      {BlogData.map((blog) => blog.id==params.id? 
       <div className={`  my-6  `}>
           <div className="hero-content justify-self-start flex-col lg:flex-row-reverse">
              

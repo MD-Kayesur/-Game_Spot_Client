@@ -2,19 +2,20 @@ import { useQuery } from "@tanstack/react-query";
 import useAxious from "../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
+import useWatchList from "../MyReview/Hooks/useWatchList";
 
 const GameWatchList = () => {
   const AxiousURL = useAxious();
-  const { refetch, data: WatchList = [] } = useQuery({
-    queryKey: ["WatchList"],
-    queryFn: async () => {
-      const result = await AxiousURL.get("/WatchList");
-      return refetch, result.data;
-    },
-  });
-  console.log(WatchList);
+  // const { refetch, data: WatchList = [] } = useQuery({
+  //   queryKey: ["WatchList"],
+  //   queryFn: async () => {
+  //     const result = await AxiousURL.get("/WatchList");
+  //     return refetch, result.data;
+  //   },
+  // });
+  // console.log(WatchList);
 
-
+const {WatchListData,refetch}=useWatchList()
 
   const RemovedWatchlist = (id) => {
     Swal.fire({
@@ -44,7 +45,7 @@ const GameWatchList = () => {
 
   return (
     <div  className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6  `}>
-    {WatchList?.map((MyReview) => (
+    {WatchListData?.map((MyReview) => (
       <div className="card   bg-base-100 shadow-xl p-4">
         <figure>
           <img
