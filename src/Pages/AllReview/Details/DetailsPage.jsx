@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import useAxious from "../../../Hooks/useAxious";
 import Swal from "sweetalert2";
+import { FaStar } from "react-icons/fa6";
 
 const DetailsPage = ({ Detail }) => {
   const navigate = useNavigate();
@@ -39,19 +40,11 @@ const DetailsPage = ({ Detail }) => {
             </h2>
           </div>
           <div className="flex items-center mt-2">
-            <div className="rating">
-              {[...Array(5)].map((_, i) => (
-                <input
-                  type="radio"
-                  name="rating-2"
-                  key={i}
-                  className={`mask mask-star-2 ${
-                    i < Detail.rating ? "bg-yellow-900" : "bg-gray-300"
-                  }`}
-                  aria-label="1 star"
-                />
-              ))}
-            </div>
+            <div className="flex items-center gap-1 text-yellow-500 mt-1">
+                    {[...Array(Math.round(Detail?.rating))].map((_, i) => (
+                        <FaStar key={i} />
+                    ))}
+                  </div>
             <span className="ml-2 text-gray-600">{Detail.rating}/5</span>
           </div>
           <div className="mt-2">
