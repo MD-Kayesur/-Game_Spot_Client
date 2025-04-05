@@ -5,13 +5,12 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { use, useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-import { FaF } from "react-icons/fa6";
+import { FaF, FaStar } from "react-icons/fa6";
 import useGame from "../MyReview/Hooks/useGame";
 // import useMovementHook from "../../Hooks/useMovementHook";
 
 const Allreview = () => {
-
-  const {loding} = useContext(AuthContext)
+  const { loding } = useContext(AuthContext);
   const AxiousURL = useAxious();
   const { refetch, data: MyReviews = [] } = useQuery({
     queryKey: ["MyReviews"],
@@ -21,10 +20,7 @@ const Allreview = () => {
     },
   });
 
-// const allReviews=useGame()
-
-
-
+  // const allReviews=useGame()
 
   // Pagination
 
@@ -36,16 +32,16 @@ const Allreview = () => {
   const totalPages = Math.ceil(MyReviews.length / itemsPerPage);
   const MyAllReviews = MyReviews.slice(startIndex, endIndex);
 
-
-  if(loding){
-    return <h2 className="text-center  text-4xl">loding.........</h2>
+  if (loding) {
+    return <h2 className="text-center  text-4xl">loding.........</h2>;
   }
   // console.log(MyAllReviews);
 
   //   const [ref, isVisible] = useMovementHook();
   return (
     <div>
-      <div  className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6  `}>
+      <div
+        className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 p-6  `}>
         {MyAllReviews?.map((MyReview) => (
           <div className="card   bg-base-100 shadow-xl p-4">
             <figure>
@@ -69,62 +65,61 @@ const Allreview = () => {
                 </span>
               </div>
               <div className="flex items-center mt-2">
-                <div className="rating">
-                  {[...Array(5)].map((_, i) => (
-                      <input type="radio" name="rating-2"  key={i}   
-                      className={`mask mask-star-2 ${i < MyReview.rating ? 'bg-yellow-900'  : 'bg-gray-300'}`} aria-label="1 star" /> 
+                <div className="flex items-center gap-1 text-yellow-500 mt-1">
+                  {[...Array(Math.round(MyReview?.rating))].map((_, i) => (
+                    <FaStar key={i} />
                   ))}
-
                 </div>
-<span className="ml-2 text-gray-600">{MyReview.rating}/5</span>
-               
+                <span className="ml-2 text-gray-600">{MyReview.rating}/5</span>
               </div>
               <div className="mt-2">
                 <p className="text-sm font-medium">
                   Reviewed by: {MyReview?.userName}
                 </p>
-                <p className="text-xs text-gray-500">
-                  {MyReview?.userEmail}
-                </p>
+                <p className="text-xs text-gray-500">{MyReview?.userEmail}</p>
               </div>
               <div>
-                 <NavLink to={`/reviewsdetails/${MyReview._id}`} className='btn '> Explore Details</NavLink>
+                <NavLink
+                  to={`/reviewsdetails/${MyReview._id}`}
+                  className="btn ">
+                  {" "}
+                  Explore Details
+                </NavLink>
               </div>
             </div>
           </div>
         ))}
- </div>
-        {/* pagination */}
-        <div className="flex justify-center mt-5">
-          <button
-            onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
-            disabled={currentPage === 1}
-            className="btn btn-outline mr-2">
-            Previous
-          </button>
-
-          {[...Array(totalPages).keys()].map((number) => (
-            <button
-              key={number}
-              onClick={() => setCurrentPage(number + 1)}
-              className={`btn mx-1 ${
-                currentPage === number + 1 ? "btn-primary" : "btn-outline"
-              }`}>
-              {number + 1}
-            </button>
-          ))}
-
-          <button
-            onClick={() =>
-              setCurrentPage((prev) => Math.min(prev + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-            className="btn btn-outline ml-2">
-            Next
-          </button>
-        </div>
       </div>
-   
+      {/* pagination */}
+      <div className="flex justify-center mt-5">
+        <button
+          onClick={() => setCurrentPage((prev) => Math.max(prev - 1, 1))}
+          disabled={currentPage === 1}
+          className="btn btn-outline mr-2">
+          Previous
+        </button>
+
+        {[...Array(totalPages).keys()].map((number) => (
+          <button
+            key={number}
+            onClick={() => setCurrentPage(number + 1)}
+            className={`btn mx-1 ${
+              currentPage === number + 1 ? "btn-primary" : "btn-outline"
+            }`}>
+            {number + 1}
+          </button>
+        ))}
+
+        <button
+          onClick={() =>
+            setCurrentPage((prev) => Math.min(prev + 1, totalPages))
+          }
+          disabled={currentPage === totalPages}
+          className="btn btn-outline ml-2">
+          Next
+        </button>
+      </div>
+    </div>
   );
 };
 

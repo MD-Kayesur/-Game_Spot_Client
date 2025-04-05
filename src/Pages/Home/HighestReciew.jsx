@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxious from "../../Hooks/useAxious";
 import { NavLink } from "react-router-dom";
+import { FaStar } from "react-icons/fa6";
 
 const HighestReciew = () => {
   const AxiousURL = useAxious();
@@ -40,19 +41,11 @@ const HighestReciew = () => {
                 </span>
               </div>
               <div className="flex items-center mt-2">
-                <div className="rating">
-                  {[...Array(5)].map((_, i) => (
-                    <input
-                      type="radio"
-                      name="rating-2"
-                      key={i}
-                      className={`mask mask-star-2 ${
-                        i < data.rating ? "bg-yellow-900" : "bg-gray-300"
-                      }`}
-                      aria-label="1 star"
-                    />
-                  ))}
-                </div>
+              <div className="flex items-center gap-1 text-yellow-500 mt-1">
+        {[...Array(Math.round(data?.rating))].map((_, i) => (
+            <FaStar key={i} />
+        ))}
+      </div>
                 <span className="ml-2 text-gray-600">{data.rating}/5</span>
               </div>
               <div className="mt-2">
