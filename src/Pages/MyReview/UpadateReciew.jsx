@@ -6,40 +6,37 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useGame from "./Hooks/useGame";
- 
+
 // import useMovementHook from '../../Hooks/useMovementHook';
 
 const UpadateReciew = () => {
-  const {coupon,updateCReview} = useGame()
-  console.log(coupon)
+  // const { coupon, updateCReview } = useGame();
+  // console.log(coupon);
   const Navigate = useNavigate();
   const AxiousURL = useAxious();
-const {id} = useParams()
- console.log(id)
-//  const {loding} = useContext(AuthContext)
- 
-const { refetch, data: updateReviews = [] } = useQuery({
-  queryKey: ["updateReviews"],
-  queryFn: async () => {
-    const result = await AxiousURL.get("/AllReviews");
-    return refetch, result.data;
-  },
-});
+  const { id } = useParams();
+  console.log(id);
+  //  const {loding} = useContext(AuthContext)
 
+  const { refetch, data: updateReviews = [] } = useQuery({
+    queryKey: ["updateReviews"],
+    queryFn: async () => {
+      const result = await AxiousURL.get("/AllReviews");
+      return refetch, result.data;
+    },
+  });
 
+  // console.log(updateReviews)
+  //  const finddata = coupon.find(Singledata => Singledata?._id === id)
+  const finddata = updateReviews.find((Singledata) => Singledata?._id === id);
+  console.log(finddata);
 
-// console.log(updateReviews)
-//  const finddata = coupon.find(Singledata => Singledata?._id === id)
- const finddata = updateReviews.find(Singledata => Singledata?._id === id)
-console.log(finddata)
+  //  if (loding) {
+  //   return <h2>loding</h2>
+  //  }
+  // const {reviewDescription,rating,genre,gameTitle,gameTitle,gameCoverImage} = finddata
 
-//  if (loding) {
-//   return <h2>loding</h2>
-//  }
-// const {reviewDescription,rating,genre,gameTitle,gameTitle,gameCoverImage} = finddata
-
- 
-//  console.log(id)
+  //  console.log(id)
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -59,44 +56,40 @@ console.log(finddata)
       rating,
       publishingYear,
       gameCoverImage,
-      
+
       genre,
     };
     console.log(info);
 
-    updateCReview(id,info)
-
-
-    // AxiousURL.put(`/updateInfo/${id}`,  info ,{ timeout: 10000 })
-    // .then((res) => {
-    //   console.log(res.data);
-    //   if (res.data.insertedId) {
-    //     Swal.fire({
-    //       title: " successly added your indestry details!",
-    //       icon: "success",
-    //       draggable: true,
-    //     });
     
-    //     return "";
-    //   }
-    // });
+
+    AxiousURL.put(`/updateInfo/${id}`,  info ,{ timeout: 10000 })
+    .then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        Swal.fire({
+          title: " successly added your indestry details!",
+          icon: "success",
+          draggable: true,
+        });
+
+        return "";
+      }
+    });
   };
-
-
-
 
   // const [ref, isVisible] = useMovementHook();
   return (
     <div>
-{
- 
-}
-
+      
 
       <div className={`bg-base-200  my-6  `}>
         <div className="hero-content flex-col lg:flex-row-reverse">
           <div className="text-center lg:text-left">
-            <h1 className="text-5xl font-bold"> You Can Update this Review !</h1>
+            <h1 className="text-5xl font-bold">
+              {" "}
+              You Can Update this Review !
+            </h1>
             <p className="py-6">
               Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
               excepturi exercitationem quasi. In deleniti eaque aut repudiandae
@@ -113,8 +106,7 @@ console.log(finddata)
                     name="gameTitle"
                     className="input"
                     defaultValue={finddata?.gameTitle}
-                    placeholder= 'GameTitle'
-                     
+                    placeholder="GameTitle"
                   />
 
                   <label className="fieldset-label">GameCoverImage</label>
@@ -123,7 +115,7 @@ console.log(finddata)
                     name="gameCoverImage"
                     className="input"
                     defaultValue={finddata?.gameCoverImage}
-                    placeholder='GameCoverImage '
+                    placeholder="GameCoverImage "
                   />
 
                   <label className="fieldset-label"> ReviewDescription</label>
@@ -132,7 +124,7 @@ console.log(finddata)
                     name="reviewDescription"
                     className="input"
                     defaultValue={finddata?.reviewDescription}
-                    placeholder ='ReviewDescription'
+                    placeholder="ReviewDescription"
                   />
                   <label className="fieldset-label"> Rating</label>
                   <input
@@ -151,7 +143,7 @@ console.log(finddata)
                     name="publishingYear"
                     className="input"
                     defaultValue={finddata?.publishingYear}
-                    placeholder= "publishingYear"
+                    placeholder="publishingYear"
                   />
 
                   <label className="fieldset-label">Select a Option</label>
@@ -165,14 +157,7 @@ console.log(finddata)
                     <option value="Horror">Horror</option>
                   </select>
 
-                   
-
-                   
-
-                  <button  className="btn btn-neutral mt-4">
-                    {" "}
-               Update
-                  </button>
+                  <button className="btn btn-neutral mt-4"> Update</button>
                 </fieldset>
               </form>
             </div>

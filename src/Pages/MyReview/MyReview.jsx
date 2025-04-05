@@ -2,22 +2,23 @@
 import { NavLink } from "react-router-dom";
 import Swal from "sweetalert2";
 // import axios from "axios";
-import { useContext, useState,    } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useMyReview from "./Hooks/useMyReview";
 import { useQuery } from "@tanstack/react-query";
 import useAxious from "../../Hooks/useAxious";
- 
+import { FaStar } from "react-icons/fa6";
+
 // import useMovementHook from "../../Hooks/useMovementHook";
 
 const MyReview = () => {
- const {myReviews} = useMyReview()
-const AxiousURL = useAxious()
- console.log(myReviews)
-  const {user} = useContext(AuthContext)
-    
-  const {loding}=useContext(AuthContext)
-  
+  const { myReviews } = useMyReview();
+  const AxiousURL = useAxious();
+  console.log(myReviews);
+  const { user } = useContext(AuthContext);
+
+  const { loding } = useContext(AuthContext);
+
   // console.log(user?.uid)
   // const useUid = user?.uid
   const { refetch, data: MyReview = [] } = useQuery({
@@ -28,22 +29,18 @@ const AxiousURL = useAxious()
     },
   });
 
- 
-console.log(MyReview)
+  console.log(MyReview);
 
-  if(loding){
-    return <h2 className="text-center  text-4xl">loding.........</h2>
+  if (loding) {
+    return <h2 className="text-center  text-4xl">loding.........</h2>;
   }
-console.log(MyReview)
+  console.log(MyReview);
 
- /*     
+  /*     
 
 //  */
 
-const datas = MyReview.filter(data=> data?.userEmail===user?.email)
- 
- 
- 
+  const datas = MyReview.filter((data) => data?.userEmail === user?.email);
 
   const HandleDElate = (id) => {
     Swal.fire({
@@ -83,7 +80,7 @@ const datas = MyReview.filter(data=> data?.userEmail===user?.email)
 
   // console.log(MyAllReviews);
 
-    // const [ref, isVisible] = useMovementHook();
+  // const [ref, isVisible] = useMovementHook();
   return (
     <div>
       <div
@@ -105,9 +102,7 @@ const datas = MyReview.filter(data=> data?.userEmail===user?.email)
                 <p className="text-sm text-gray-500">
                   {MyReview?.reviewDescription}
                 </p>
-                <p className="text-sm text-gray-500">
-                  {MyReview?.userEmail}
-                </p>
+                <p className="text-sm text-gray-500">{MyReview?.userEmail}</p>
                 <div className="flex justify-between items-center mt-2">
                   <span className="badge badge-primary">{MyReview?.genre}</span>
                   <span className="text-gray-600 text-sm">
@@ -115,15 +110,9 @@ const datas = MyReview.filter(data=> data?.userEmail===user?.email)
                   </span>
                 </div>
                 <div className="flex items-center mt-2">
-                  <div className="rating">
-                    {[...Array(5)].map((_, i) => (
-                      <input
-                        type="radio"
-                        name="rating-2"
-                        key={i}
-                        className="mask mask-star-2 bg-orange-400"
-                        aria-label="1 star"
-                      />
+                  <div className="flex items-center gap-1 text-yellow-500 mt-1">
+                    {[...Array(Math.round(MyReview?.rating))].map((_, i) => (
+                      <FaStar key={i} />
                     ))}
                   </div>
                   <span className="ml-2 text-gray-600">
@@ -190,8 +179,6 @@ const datas = MyReview.filter(data=> data?.userEmail===user?.email)
         </button>
       </div> */}
     </div>
-
-    
   );
 };
 
